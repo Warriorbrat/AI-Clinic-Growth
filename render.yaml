@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: ai-clinic-growth-backend
+    env: node
+    region: singapore
+    plan: starter
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+
+    # ADD THESE MANUALLY in Render dashboard → Environment tab
+    # Do NOT paste secrets here — this file is committed to git
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: LOG_LEVEL
+        value: info
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      # All secret keys (SUPABASE_URL, ANTHROPIC_API_KEY, etc.)
+      # must be added manually in the Render dashboard Environment tab.
+      # Never commit secret values to this file.
